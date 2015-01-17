@@ -15812,7 +15812,7 @@ Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0));};
         "verb": "POST"
       },
       "project_repository": {
-        "path": "/projects/:project_id/repository(.:format)",
+        "path": "/projects/repository/:project_id(.:format)",
         "verb": "POST"
       },
       "new_project_repository": {
@@ -17752,7 +17752,7 @@ Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0));};
         repository_source: this.repoSource.currentProvider()
       };
       return $.ajax({
-        url: projects_path(),
+        url: new_project_path(),
         method: 'post',
         data: data,
         dataType: 'json',
