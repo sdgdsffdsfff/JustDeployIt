@@ -15740,7 +15740,7 @@ Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0));};
         "verb": "GET"
       },
       "new_project_server": {
-        "path": "/projects/:project_id/servers/new(.:format)",
+        "path": "/servers/new/:project_id(.:format)",
         "verb": "GET"
       },
       "edit_project_server": {
