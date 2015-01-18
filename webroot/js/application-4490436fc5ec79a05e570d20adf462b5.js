@@ -16228,88 +16228,88 @@ Modernizr.load = function () {
     window.CoffeeAssetPaths = {
         assets: {
             "image": {
-                "icon-globe.svg": "/img/icons/icon-globe-f2d7e98d88f8285865cd7d5345224e81.svg",
-                "icon-downstream.svg": "/img/icons/icon-downstream-325f88084d849303552bc36899dedf82.svg",
-                "icon-list-block.svg": "/img/icons/icon-list-block-ba480b0d15bf0c7c15670c0dd3b154f9.svg",
-                "icon-tick.svg": "/img/icons/icon-tick-9a01403b7a6c1657d679a7f62b9623c6.svg",
-                "icon-reorder.svg": "/img/icons/icon-reorder-c1dde0a433762ae0dce6583b3da490f4.svg",
-                "icon-trash.svg": "/img/icons/icon-trash-4d0e03bf959145d64a6c5a9905127c05.svg",
-                "icon-projects.svg": "/img/icons/icon-projects-f2e21fdd8c1a0dfc1b7e438396263705.svg",
-                "icon-cancel.svg": "/img/icons/icon-cancel-408669aa013831c84b172d9a478a5168.svg",
-                "icon-menu.svg": "/img/icons/icon-menu-2eb971600fbdab538bd350931cbd5fe8.svg",
-                "icon-rocket.svg": "/img/icons/icon-rocket-859fd58e80dff86a7fd4aaede1e919c3.svg",
-                "icon-upstream.svg": "/img/icons/icon-upstream-eba35735e853998f06e1c888bd552418.svg",
-                "icon-pencil.svg": "/img/icons/icon-pencil-c3c83e027bd471c46571ffc8a6914974.svg",
-                "icon-cross.svg": "/img/icons/icon-cross-47190648fc6962101db2d9839e9a82bb.svg",
-                "icon-spinner-white.svg": "/img/icons/icon-spinner-white-78c432f2161626fd5a58df2198d4fab3.svg",
-                "icon-disconnect.svg": "/img/icons/icon-disconnect-87d6e6ee4217babed0a92c55fca24240.svg",
-                "logo-bitbucket.svg": "/img/icons/logo-bitbucket-80ea29fc1a2e1e35ca304910ac46e8dc.svg",
-                "icon-list-table-white.svg": "/img/icons/icon-list-table-white-e2352963a3a7c08ec0400d2997e902b1.svg",
-                "icon-star-empty.svg": "/img/icons/icon-star-empty-983228f419b166694a1f89f859051c01.svg",
-                "icon-users.svg": "/img/icons/icon-users-4d09e071ba1c6eed77353183a91a9e9c.svg",
-                "icon-mailbox.svg": "/img/icons/icon-mailbox-823ada60ba78b8820f5bf01525253000.svg",
-                "icon-checkbox.svg": "/img/icons/icon-checkbox-74c5b54db843543a19e008919ed1ee4b.svg",
-                "icon-arrow-down.png": "/img/icons/icon-arrow-down-264d7270d0329dbb09ebc8ce0ac89078.png",
-                "icon-arrow-tri.svg": "/img/icons/icon-arrow-tri-1b6dc9d302af18bcb7ba44433b0fcf72.svg",
-                "logo-codebase.svg": "/img/icons/logo-codebase-d43e1f209ad2ff67a9d27c05be1ccf44.svg",
-                "icon-credit-card.svg": "/img/icons/icon-credit-card-a4e7e55fa0d488c0a24ada5af824e925.svg",
-                "icon-support.svg": "/img/icons/icon-support-a5f2a79ac8f891a171d76e77405b1faa.svg",
-                "icon-email.svg": "/img/icons/icon-email-a15fe704ae06631a319f35b086b6e305.svg",
-                "crate.svg": "/img/icons/crate-19d6c1be00f83b61444752f5fe7ff6b1.svg",
-                "icon-refresh.svg": "/img/icons/icon-refresh-b5d3fae7b00912373c19a0c321a1f3ac.svg",
-                "sprite.svg": "/img/icons/sprite-a30e520ab613b02260fb38833355dee0.svg",
-                "atechmedia-logo.png": "/img/icons/atechmedia-logo-0c4d3f231c616ea3edec833d64afb407.png",
-                "icon-upgrade.svg": "/img/icons/icon-upgrade-cd8b19979e8d57719865c263cc199e4c.svg",
-                "icon-document.svg": "/img/icons/icon-document-9a18e3de54067657f575ce1e01a2a3c8.svg",
-                "icon-server.svg": "/img/icons/icon-server-9776be29c45bea75a6996a2e3f2661e8.svg",
-                "icon-accounts.svg": "/img/icons/icon-accounts-5573fc3b8b4b9b204d48ac0d24eb1799.svg",
-                "icon-connect.svg": "/img/icons/icon-connect-caec3d36c675738278cd1bff1078a4dc.svg",
-                "icon-hide.svg": "/img/icons/icon-hide-3ee2bdbbde6b0a782e4c8d23241bccf6.svg",
-                "icon-cheque.svg": "/img/icons/icon-cheque-d29399ab52f220cca21db5b24f1b0edd.svg",
-                "icon-dashboard.svg": "/img/icons/icon-dashboard-b7fc48923a8411a5354a81b66e34b692.svg",
-                "spinning-bubbles.svg": "/img/icons/spinning-bubbles-d2d6583486a7edf5cf84559170df6306.svg",
-                "icon-centre.svg": "/img/icons/icon-centre-bb8bdc15b00586562166e3839b0b3d7c.svg",
                 "icon-add.svg": "/img/icons/icon-add-e0280f31016ead5fa85f6969fbd6f2db.svg",
-                "logo-github.svg": "/img/icons/logo-github-6dc2ba1f46e075155cd5ac8891c3b3c8.svg",
-                "icon-spinner.svg": "/img/icons/icon-spinner-b9e57ecb8e4afe0ea243a5a9cc699630.svg",
                 "icon-close.svg": "/img/icons/icon-close-14de10d95a0c328b4d3eba19f202b51b.svg",
-                "icon-list-block-white.svg": "/img/icons/icon-list-block-white-f9dfb5ef9ca2d4b6f399d1e61e04c048.svg",
+                "icon-tick.svg": "/img/icons/icon-tick-9a01403b7a6c1657d679a7f62b9623c6.svg",
+                "icon-list-block.svg": "/img/icons/icon-list-block-ba480b0d15bf0c7c15670c0dd3b154f9.svg",
+                "icon-cancel.svg": "/img/icons/icon-cancel-408669aa013831c84b172d9a478a5168.svg",
+                "icon-document.svg": "/img/icons/icon-document-9a18e3de54067657f575ce1e01a2a3c8.svg",
+                "icon-reorder.svg": "/img/icons/icon-reorder-c1dde0a433762ae0dce6583b3da490f4.svg",
+                "icon-spinner-white.svg": "/img/icons/icon-spinner-white-78c432f2161626fd5a58df2198d4fab3.svg",
+                "icon-users.svg": "/img/icons/icon-users-4d09e071ba1c6eed77353183a91a9e9c.svg",
+                "icon-centre.svg": "/img/icons/icon-centre-bb8bdc15b00586562166e3839b0b3d7c.svg",
+                "icon-cheque.svg": "/img/icons/icon-cheque-d29399ab52f220cca21db5b24f1b0edd.svg",
+                "icon-downstream.svg": "/img/icons/icon-downstream-325f88084d849303552bc36899dedf82.svg",
+                "icon-mailbox.svg": "/img/icons/icon-mailbox-823ada60ba78b8820f5bf01525253000.svg",
+                "icon-pencil.svg": "/img/icons/icon-pencil-c3c83e027bd471c46571ffc8a6914974.svg",
+                "icon-refresh.svg": "/img/icons/icon-refresh-b5d3fae7b00912373c19a0c321a1f3ac.svg",
                 "icon-square.svg": "/img/icons/icon-square-80aaebad3047b940606347fc6e94be3e.svg",
-                "icon-star-filled.svg": "/img/icons/icon-star-filled-16fc7e710d631c5bd1e26ae07ea4f816.svg",
-                "icon-deploy.svg": "/img/icons/icon-deploy-1d7c9b0fa9060ac75428ef942562ad49.svg",
-                "icon-multiple-users.svg": "/img/icons/icon-multiple-users-227e1b467b622098e38ac9e0fea609a7.svg",
-                "icon-checkbox-cross.svg": "/img/icons/icon-checkbox-cross-67da138b3d766ad112292570d4166786.svg",
-                "logo.svg": "/img/icons/logo-acf8a53bc09be8200bbb1bf638bc7c00.svg",
+                "logo-bitbucket.svg": "/img/icons/logo-bitbucket-80ea29fc1a2e1e35ca304910ac46e8dc.svg",
+                "icon-dashboard.svg": "/img/icons/icon-dashboard-b7fc48923a8411a5354a81b66e34b692.svg",
+                "icon-menu.svg": "/img/icons/icon-menu-2eb971600fbdab538bd350931cbd5fe8.svg",
+                "icon-upstream.svg": "/img/icons/icon-upstream-eba35735e853998f06e1c888bd552418.svg",
+                "icon-cross.svg": "/img/icons/icon-cross-47190648fc6962101db2d9839e9a82bb.svg",
                 "icon-close-white.svg": "/img/icons/icon-close-white-859ee955f52602024afd7c20100e3c4f.svg",
+                "icon-disconnect.svg": "/img/icons/icon-disconnect-87d6e6ee4217babed0a92c55fca24240.svg",
+                "icon-trash.svg": "/img/icons/icon-trash-4d0e03bf959145d64a6c5a9905127c05.svg",
+                "icon-list-block-white.svg": "/img/icons/icon-list-block-white-f9dfb5ef9ca2d4b6f399d1e61e04c048.svg",
                 "icon-list-table.svg": "/img/icons/icon-list-table-1d3083531e7d60e4677a1f896aa3e3cb.svg",
-                "icon-cloud.svg": "/img/icons/icon-cloud-285d0a7836f22d1083a92b854b83a58d.svg"
+                "icon-credit-card.svg": "/img/icons/icon-credit-card-a4e7e55fa0d488c0a24ada5af824e925.svg",
+                "logo-codebase.svg": "/img/icons/logo-codebase-d43e1f209ad2ff67a9d27c05be1ccf44.svg",
+                "icon-spinner.svg": "/img/icons/icon-spinner-b9e57ecb8e4afe0ea243a5a9cc699630.svg",
+                "icon-server.svg": "/img/icons/icon-server-9776be29c45bea75a6996a2e3f2661e8.svg",
+                "atechmedia-logo.png": "/img/icons/atechmedia-logo-0c4d3f231c616ea3edec833d64afb407.png",
+                "crate.svg": "/img/icons/crate-19d6c1be00f83b61444752f5fe7ff6b1.svg",
+                "icon-connect.svg": "/img/icons/icon-connect-caec3d36c675738278cd1bff1078a4dc.svg",
+                "icon-checkbox.svg": "/img/icons/icon-checkbox-74c5b54db843543a19e008919ed1ee4b.svg",
+                "icon-star-empty.svg": "/img/icons/icon-star-empty-983228f419b166694a1f89f859051c01.svg",
+                "icon-deploy.svg": "/img/icons/icon-deploy-1d7c9b0fa9060ac75428ef942562ad49.svg",
+                "icon-arrow-down.png": "/img/icons/icon-arrow-down-264d7270d0329dbb09ebc8ce0ac89078.png",
+                "icon-support.svg": "/img/icons/icon-support-a5f2a79ac8f891a171d76e77405b1faa.svg",
+                "icon-upgrade.svg": "/img/icons/icon-upgrade-cd8b19979e8d57719865c263cc199e4c.svg",
+                "logo-github.svg": "/img/icons/logo-github-6dc2ba1f46e075155cd5ac8891c3b3c8.svg",
+                "icon-arrow-tri.svg": "/img/icons/icon-arrow-tri-1b6dc9d302af18bcb7ba44433b0fcf72.svg",
+                "icon-projects.svg": "/img/icons/icon-projects-f2e21fdd8c1a0dfc1b7e438396263705.svg",
+                "icon-multiple-users.svg": "/img/icons/icon-multiple-users-227e1b467b622098e38ac9e0fea609a7.svg",
+                "icon-hide.svg": "/img/icons/icon-hide-3ee2bdbbde6b0a782e4c8d23241bccf6.svg",
+                "icon-cloud.svg": "/img/icons/icon-cloud-285d0a7836f22d1083a92b854b83a58d.svg",
+                "icon-checkbox-cross.svg": "/img/icons/icon-checkbox-cross-67da138b3d766ad112292570d4166786.svg",
+                "icon-star-filled.svg": "/img/icons/icon-star-filled-16fc7e710d631c5bd1e26ae07ea4f816.svg",
+                "icon-email.svg": "/img/icons/icon-email-a15fe704ae06631a319f35b086b6e305.svg",
+                "sprite.svg": "/img/icons/sprite-a30e520ab613b02260fb38833355dee0.svg",
+                "icon-rocket.svg": "/img/icons/icon-rocket-859fd58e80dff86a7fd4aaede1e919c3.svg",
+                "spinning-bubbles.svg": "/img/icons/spinning-bubbles-d2d6583486a7edf5cf84559170df6306.svg",
+                "icon-list-table-white.svg": "/img/icons/icon-list-table-white-e2352963a3a7c08ec0400d2997e902b1.svg",
+                "icon-accounts.svg": "/img/icons/icon-accounts-5573fc3b8b4b9b204d48ac0d24eb1799.svg",
+                "icon-globe.svg": "/img/icons/icon-globe-f2d7e98d88f8285865cd7d5345224e81.svg",
+                "logo.svg": "/img/icons/logo-acf8a53bc09be8200bbb1bf638bc7c00.svg"
             },
             "javascript": {
-                "config_file.js.coffee": "/javascripts/config_file.js.coffee.js",
+                "servers.js.coffee": "/javascripts/servers.js.coffee.js",
                 "elements": "/javascripts/elements.js",
-                "projects.js.coffee": "/javascripts/projects.js.coffee.js",
-                "application.coffee": "/javascripts/application.coffee.js",
-                "utilities": "/javascripts/utilities.js",
-                "users.js.coffee": "/javascripts/users.js.coffee.js",
-                "deployments.js.coffee": "/javascripts/deployments.js.coffee.js",
-                "base.js.coffee": "/javascripts/base.js.coffee.js",
-                "global.js.coffee": "/javascripts/global.js.coffee.js",
-                "dashboard.js.coffee": "/javascripts/dashboard.js.coffee.js",
                 "repositories.js.coffee": "/javascripts/repositories.js.coffee.js",
                 "commands.js.coffee": "/javascripts/commands.js.coffee.js",
-                "servers.js.coffee": "/javascripts/servers.js.coffee.js",
-                "notifications.js.coffee": "/javascripts/notifications.js.coffee.js"
+                "notifications.js.coffee": "/javascripts/notifications.js.coffee.js",
+                "config_file.js.coffee": "/javascripts/config_file.js.coffee.js",
+                "application.coffee": "/javascripts/application.coffee.js",
+                "base.js.coffee": "/javascripts/base.js.coffee.js",
+                "dashboard.js.coffee": "/javascripts/dashboard.js.coffee.js",
+                "global.js.coffee": "/javascripts/global.js.coffee.js",
+                "users.js.coffee": "/javascripts/users.js.coffee.js",
+                "utilities": "/javascripts/utilities.js",
+                "deployments.js.coffee": "/javascripts/deployments.js.coffee.js",
+                "projects.js.coffee": "/javascripts/projects.js.coffee.js"
             },
             "stylesheet": {
-                "base": "/stylesheets/base.css",
-                "partial": "/stylesheets/partial.css",
-                "application.scss": "/stylesheets/application.scss.css",
-                "refactor": "/stylesheets/refactor.css",
-                "generic": "/stylesheets/generic.css",
+                "component": "/stylesheets/component.css",
                 "deploy.scss": "/stylesheets/deploy.scss.css",
                 "global": "/stylesheets/global.css",
-                "component": "/stylesheets/component.css",
-                "shame": "/stylesheets/shame.css"
+                "application.scss": "/stylesheets/application.scss.css",
+                "generic": "/stylesheets/generic.css",
+                "shame": "/stylesheets/shame.css",
+                "base": "/stylesheets/base.css",
+                "refactor": "/stylesheets/refactor.css",
+                "partial": "/stylesheets/partial.css"
             }
         },
         assetTypes: ["audio", "font", "image", "javascript", "stylesheet", "video"],
@@ -18257,6 +18257,9 @@ Modernizr.load = function () {
             this.loadLatestRef = __bind(this.loadLatestRef, this);
             this.getLatestRef = __bind(this.getLatestRef, this);
             this.changeServer = __bind(this.changeServer, this);
+            this.abortAllRequests = __bind(this.abortAllRequests, this);
+            this.abortServRequests = __bind(this.abortServRequests, this);
+            this.abortRefRequests = __bind(this.abortRefRequests, this);
             this.form = $('form#new_deployment');
             this.branch = this.form.find('#deployment_branch');
             this.notifyByEmail = this.form.find('#deployment_email_notify');
@@ -18273,14 +18276,38 @@ Modernizr.load = function () {
             this.icon = this.loadRefButton.find('.js-ref-icon');
             this.spinner = this.loadRefButton.find('.js-ref-spinner');
             this.serverSelector = this.form.find('#deployment_parent_identifier');
+            this.refRequests = [];
+            this.servRequests = [];
+            this.loadLatestRef(this.branch.val());
             this.serverSelector.on('change', this.changeServer);
             this.loadRefButton.on('click', this.getLatestRef);
-            this.loadLatestRef(this.branch.val());
             return this;
         }
 
+        ServersAndRevisions.prototype.abortRequests = function (requests) {
+            requests.forEach(function (jqXHR, id) {
+                jqXHR.abort();
+            });
+        };
+
+        ServersAndRevisions.prototype.abortRefRequests = function () {
+            this.abortRequests(this.refRequests);
+            this.refRequests = [];
+        };
+
+        ServersAndRevisions.prototype.abortServRequests = function () {
+            this.abortRequests(this.servRequests);
+            this.servRequests = [];
+        };
+
+        ServersAndRevisions.prototype.abortAllRequests = function () {
+            this.abortRefRequests();
+            this.abortServRequests();
+        };
+
         ServersAndRevisions.prototype.changeServer = function (e) {
-            var informationUrl, serverId;
+            var informationUrl, serverId, xhr;
+            this.abortAllRequests();
             serverId = $(e.currentTarget).val();
             if ($(e.currentTarget).find('option:selected').closest('optgroup').attr('label') === 'Server Groups') {
                 informationUrl = project_server_group_path({
@@ -18295,19 +18322,35 @@ Modernizr.load = function () {
             }
             this.startRevision.setCommitInfoLoading();
             this.endRevision.setCommitInfoLoading();
-            return $.ajax({
+            xhr = $.ajax({
+                beforeSend: (function (_this) {
+                    return function (jqXHR) {
+                        _this.servRequests.push(jqXHR);
+                    };
+                })(this),
+                complete: (function (_this) {
+                    return function (jqXHR) {
+                        var index;
+                        index = _this.servRequests.indexOf(jqXHR);
+                        if (index > -1) {
+                            return _this.servRequests.splice(index, 1);
+                        }
+                    };
+                })(this),
                 dataType: 'json',
                 type: 'GET',
-                url: informationUrl,
-                success: (function (_this) {
-                    return function (data) {
-                        _this.startRevision.setTemporaryCommitInfo(data.last_revision);
-                        _this.branch.val(data.preferred_branch);
-                        _this.loadLatestRef(data.preferred_branch);
-                        return _this.notifyByEmail.attr('checked', data.notify_email);
-                    };
-                })(this)
+                url: informationUrl
             });
+            return xhr.success((function (_this) {
+                return function (data) {
+                    if (data.last_revision) {
+                        _this.startRevision.setTemporaryCommitInfo(data.last_revision);
+                    }
+                    _this.branch.val(data.preferred_branch);
+                    _this.loadLatestRef(data.preferred_branch);
+                    return _this.notifyByEmail.attr('checked', data.notify_email);
+                };
+            })(this));
         };
 
         ServersAndRevisions.prototype.getLatestRef = function (e) {
@@ -18316,8 +18359,24 @@ Modernizr.load = function () {
         };
 
         ServersAndRevisions.prototype.loadLatestRef = function (branch) {
+            var xhr;
+            this.abortAllRequests();
             this.endRevision.setCommitInfoLoading();
-            return $.ajax({
+            xhr = $.ajax({
+                beforeSend: (function (_this) {
+                    return function (jqXHR) {
+                        _this.refRequests.push(jqXHR);
+                    };
+                })(this),
+                complete: (function (_this) {
+                    return function (jqXHR) {
+                        var index;
+                        index = _this.refRequests.indexOf(jqXHR);
+                        if (index > -1) {
+                            _this.refRequests.splice(index, 1);
+                        }
+                    };
+                })(this),
                 dataType: 'json',
                 type: 'GET',
                 url: latest_revision_project_repository_path({
@@ -18325,18 +18384,18 @@ Modernizr.load = function () {
                 }),
                 data: {
                     "branch": branch
-                },
-                success: (function (_this) {
-                    return function (data) {
-                        return _this.endRevision.setTemporaryCommitInfo(data.ref);
-                    };
-                })(this),
-                error: (function (_this) {
-                    return function (jqXHR, textStatus) {
-                        return _this.endRevision.setCommitInfoError();
-                    };
-                })(this)
+                }
             });
+            xhr.success((function (_this) {
+                return function (data) {
+                    _this.endRevision.setTemporaryCommitInfo(data.ref);
+                };
+            })(this));
+            xhr.error((function (_this) {
+                return function (jqXHR, textStatus) {
+                    _this.endRevision.setCommitInfoError();
+                };
+            })(this));
         };
 
         return ServersAndRevisions;
