@@ -31,17 +31,21 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $components = array('DebugKit.Toolbar');
-
-    public function beforeFilter() {
-        // Projects的new、index操作不需要导航菜单栏
-        if($this->request->params['controller'] == 'projects' && in_array($this->request->params['action'],array( 'add','index'))) {
-            $this->set('need_navbar', false);
-        } else {
-            $this->set('need_navbar', true);
-        }
-
-        parent::beforeFilter();
-    }
-
+    public $components = array(
+        'DebugKit.Toolbar',
+        'Auth' => array(
+            'loginAction' => array(
+                'controller' => 'users',
+                'action' => 'login'
+            ),
+            'authError' => 'Did you really think you are allowed to see that?',
+            'authenticate' => array(
+                'Form' => array(
+                    'fields' => array(
+                        'username' => array('username','email')
+                    )
+                )
+            )
+        )
+    );
 }
