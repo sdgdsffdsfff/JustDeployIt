@@ -36,6 +36,19 @@
  */
 	CakePlugin::routes();
 
+	/**
+	 * 将所有控制器的new请求转成add请求
+	 * 因为new是js库要用到的关键方法，而php将new作为关键词，不得不用add代替
+	 */
+	Router::connect('/:controller/new', array('action' => 'add'));
+	Router::connect('/:controller/new/*', array('action' => 'add'));
+	/**
+	 * 美化login、logout、reset路径，不体现users控制其
+	 */
+	Router::connect('/login',  array('controller' => 'users','action' => 'login'));
+	Router::connect('/reset',  array('controller' => 'users','action' => 'reset'));
+	Router::connect('/logout', array('controller' => 'users','action' => 'logout'));
+
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
  * the built-in default routes.
