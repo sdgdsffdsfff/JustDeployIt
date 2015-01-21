@@ -15,8 +15,17 @@ class UsersController extends AppController {
 		$this->layout = 'identifying';
 
 		if($this->request->is('post')) {
-			$this->Auth->login($this->request->data);
+			// notes: Auth组件的处理逻辑，跟页面Form元素的配合关系
+			// 1. 如果页面form中用类似如下格式的标准cakephp元素
+			//     <input class="form-control" id="data[User][email_address]" name="data[User][email_address]" spellcheck="false" type="text" />
+			//     <input class="form-control" id="data[User][password]"      name="data[User][password]"      spellcheck="false" type="text" />
+			//    则只需要直接调用$this->Auth->login();即可完成验证和登录
+			// 2. 否则，则需要在CakeRequest的data数据里制造名为User的数据，以满足Auth组件的identify方法的逻辑
 
+			// 在不改变页面form元素特殊命名的时，制造CakeRequest的data数据，使Auth组件顺利工作的数据转换工作
+			$this->request->data['User'] = $this->request->data;
+			// 进行登录和验证
+			$this->Auth->login();
 			if(!$this->Auth->user()) {
 				$this->Session->setFlash('Access Denied. Your username and/or password were incorrect. Please check and try again.', 'common/flash', array('type' => 'alert'));
 			} else {

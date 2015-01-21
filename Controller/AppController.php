@@ -46,13 +46,15 @@ class AppController extends Controller {
             'flash'     => array(
                 'element' => 'common/flash',
                 'key'       => 'auth',
-                'params'    => array('type' => 'notice')),
+                'params'    => array('type' => 'notice')
+            ),
             'authenticate'  => array(
                 'Form' => array(
                     'passwordHasher' => array(
                         'className' => 'Simple',
                         'hashType'  => 'sha256'
                     ),
+                    'userModel' => 'User',
                     'fields' => array(
                         'username' => 'email_address',
                         'password' => 'password'

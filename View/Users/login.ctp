@@ -9,7 +9,7 @@
             </div>
             <div class='form-group u-margin-top'>
                 <label class="form-label" for="username">Username / E-Mail Address</label>
-                <input class="form-control" id="username" name="username" spellcheck="false" type="text" />
+                <input class="form-control" id="email_address" name="email_address" spellcheck="false" type="text" />
             </div>
             <div class='form-group'>
                 <label class="form-label" for="password">Password</label>
