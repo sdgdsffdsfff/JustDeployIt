@@ -16,14 +16,16 @@ $body_class  = 'js-' . $this->request['controller'] . '-' . $js_action;
 
 <?php
 echo $this->element('common/header');
-if(!empty($need_navbar)) {
+if(!isset($noMenuBar)) {
 	echo $this->element('common/navbar');
 }
 ?>
 
-<?php echo $this->Session->flash(); ?>
+<div class='container clearfix'>
+
 <?php echo $this->fetch('content'); ?>
 
+</div>
 <?php echo $this->element('common/footer'); ?>
 <?php echo $this->element('common/foot_js'); ?>
 </body>
