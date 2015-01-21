@@ -33,17 +33,30 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     public $components = array(
         'DebugKit.Toolbar',
+        'Session',
         'Auth' => array(
             'loginAction' => array(
                 'controller' => 'users',
-                'action' => 'login'
+                'action'     => 'login'
             ),
-            'authError' => 'Did you really think you are allowed to see that?',
-            'authenticate' => array(
+            'loginRedirect' => array(
+                'controller' => 'projects'
+            ),
+            'authError' => 'Access Denied. You should login first.',
+            'flash'     => array(
+                'element' => 'common/flash',
+                'key'       => 'auth',
+                'params'    => array('type' => 'notice')),
+            'authenticate'  => array(
                 'Form' => array(
+                    'passwordHasher' => array(
+                        'className' => 'Simple',
+                        'hashType'  => 'sha256'
+                    ),
                     'fields' => array(
-                        'username' => array('username','email')
-                    )
+                        'username' => 'email_address',
+                        'password' => 'password'
+                    ),
                 )
             )
         )
