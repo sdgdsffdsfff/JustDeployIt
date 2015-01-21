@@ -8,7 +8,7 @@
                 <input name="authenticity_token" type="hidden" value="laBOjZbXcHz2Vlufb95oRysGrNnebQP1pBO7NWuJXns=" />
             </div>
             <div class='form-group u-margin-top'>
-                <label class="form-label" for="username">Username / E-Mail Address</label>
+                <label class="form-label" for="username">E-Mail Address</label>
                 <input class="form-control" id="email_address" name="email_address" spellcheck="false" type="text" />
             </div>
             <div class='form-group'>
