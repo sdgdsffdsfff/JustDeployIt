@@ -39,9 +39,6 @@ class AppController extends Controller {
                 'controller' => 'users',
                 'action'     => 'login'
             ),
-            'loginRedirect' => array(
-                'controller' => 'projects'
-            ),
             'authError' => 'Access Denied. You should login first.',
             'flash'     => array(
                 'element' => 'common/flash',

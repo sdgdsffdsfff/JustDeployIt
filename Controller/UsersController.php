@@ -29,7 +29,7 @@ class UsersController extends AppController {
 			if(!$this->Auth->user()) {
 				$this->Session->setFlash('Access Denied. Your username and/or password were incorrect. Please check and try again.', 'common/flash', array('type' => 'alert'));
 			} else {
-				return $this->redirect($this->Auth->loginRedirect);
+				return $this->redirect($this->Auth->redirectUrl());
 			}
 		}
 	}
