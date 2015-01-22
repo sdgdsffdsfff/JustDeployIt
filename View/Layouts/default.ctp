@@ -16,7 +16,11 @@ $body_class  = 'js-' . $this->request['controller'] . '-' . $js_action;
 
 <?php
 echo $this->element('common/header');
-if(!isset($noMenuBar)) {
+/**
+ * 渲染出来的页面是否需要项目级的菜单
+ * 除Projects的大部分action外，其它控制器都不需要这个菜单
+ */
+if(isset($needProjectMenuBar)) {
 	echo $this->element('common/navbar');
 }
 ?>
