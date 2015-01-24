@@ -533,6 +533,18 @@ class GitRepo {
         return $this->run("checkout $branch");
     }
 
+    /**
+     * 将远端分支检出到本地
+     *
+     * @param $branch
+     * @param $remote
+     *
+     * @return string
+     */
+    public function checkout_remote($branch, $remote) {
+        // git checkout -b dev_zsk2 origin/dev_zsk2
+        return $this->run("checkout -b $branch $remote");
+    }
 
     /**
      * Runs a `git merge` call

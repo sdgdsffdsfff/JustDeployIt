@@ -22,10 +22,11 @@ class ProjectsController extends AppController {
 			$project['Project']['user_id'] = $this->Auth->user('id');
 			$this->Project->save($project);
 			// 组装JSON数组
-			$projectRecord['name']        = $this->request->data['project']['name'];
-			$projectRecord['permalink']  = $this->Project->getInsertID();
-			$projectRecord['public_key'] = 'HelloWorldSSHKEY';
-			$projectRecord['repository'] = 'null';
+			$project = $this->Project->findById($this->Project->getInsertID());
+			$projectRecord['name']        = $project['Project']['name'];
+			$projectRecord['permalink']  = $project['Project']['id'];
+			$projectRecord['public_key'] = $project['Project']['public_key'];
+			$projectRecord['repository'] = null;
 
 			$this->jsonResponse($projectRecord);
 		}
@@ -34,17 +35,56 @@ class ProjectsController extends AppController {
 	public function edit($project_id) {
 		// 需要项目级导航菜单
 		$this->set('needProjectMenuBar', true);
-		// TODO: 非法id传入处理
-		$project = $this->Project->find('first', array('conditions' => array('id' => $project_id)));
 
-		if($this->loadModel('Repository')) {
-			$repository = $this->Repository->find('first', array('conditions' => array('project_id' => $project_id)));
-			$this->set($repository);
+		$project = $this->Project->findById($project_id);
+
+		// 非法id传入处理
+		if(empty($project)) {
+			throw new NotFoundException('Could not find that post');
 		}
 
+		// 初始化gidaa
+		$this->loadModel('Repository');
+		$repository = $this->Repository->findByProjectId($project_id);
+		$repositoryUrl = $repository['Repository']['url'];
+		// 修改
+		if($this->request->is('POST')) {
+			$project = $this->Project->create($this->request->data['project']);
+			$this->Project->save($project);
+			$newRepository = $this->Repository->create($this->request->data['repository']);
+			$this->Repository->save($newRepository);
+
+			// 代码库的url发生了变化，需要重新clone
+			if(strtolower($repository['Repository']['url']) != strtolower($newRepository['Repository']['url'])) {
+				$reclone = true;
+				$repositoryUrl = $newRepository['Repository']['url'];
+			}
+		}
+		// 获取请求或修改后的结果
+		$project = $this->Project->findById($project_id);
+
+		// 得到代码库的可用分支
+		$this->loadModel('Gitdata');
+		$this->Gitdata->initGitrepo($project_id, $repositoryUrl);
+		if(isset($reclone) )$this->Gitdata->cloneRepo();
+		$repository['Repository']['branches'] = $this->Gitdata->branches();
+
+		$this->set($repository);
 		$this->set($project);
 	}
 
+	public function del($project_id) {
+		// TODO: 1. 还会有其他的关联数据; 2. 要进行权限判断；3. 创建人和具备admin权限的人
+		$this->Project->delete($project_id);
+		$this->loadModel('Repository');
+		$this->Repository->deleteAll(array('project_id' => $project_id));
+		// 删除clone到本地的代码库
+		$this->loadModel('Gitdata');
+		$this->Gitdata->initGitrepo($project_id);
+		$this->Gitdata->removeRepoDir();
+
+		$this->redirect(array('action' => 'index'));
+	}
 	public function repository($project_id) {
 		// 需要项目级导航菜单
 		$this->set('needProjectMenuBar', true);
@@ -55,26 +95,32 @@ class ProjectsController extends AppController {
 			$repository['Repository']['project_id'] = $project_id;
 			$this->Repository->save($repository);
 
+			// clone代码库
+			$this->loadModel('Gitdata');
+			$this->Gitdata->initGitrepo($project_id, $repository['Repository']['url']);
+			$this->Gitdata->cloneRepo();
 			// 新增项目时的同步请求
 			if($this->request->accepts('application/json')) {
-				$this->jsonResponse($this->request->data['repository']);
+				$this->jsonResponse($repository);
 			} else {
 				$this->redirect(array('action' => 'edit', $project_id));
 			}
 
 		} else {
-			// 仅为新增而来，projects/add或projects/repositiory的新增操作
+			// 为新增准备页面，一般在项目没有设置代码库时的专门的添加操作
 			// 暂无额外操作
 		}
 	}
 
 	public function recache($project_id) {
+
 		$this->loadModel('Repository');
-		$repository = $this->Repository->find('first', array('conditions' => array('project_id' => $project_id)));
+		$repository = $this->Repository->findByProjectId($project_id);
 		if(!empty($repository)) {
+			// clone代码库
 			$this->loadModel('Gitdata');
-			$this->Gitdata->initGitrepo($repository['Repository']['url'], $project_id, $repository['Repository']['branch']);
-			$this->Gitdata->recache();
+			$this->Gitdata->initGitrepo($project_id, $repository['Repository']['url']);
+			$this->Gitdata->cloneRepo();
 		}
 
 		$this->redirect($this->referer());
