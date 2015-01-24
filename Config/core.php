@@ -218,7 +218,7 @@ Configure::write('Routing.prefixes', array('admin'));
 	Configure::write('Session', array(
 		'defaults' => 'php',
 		'cookie'   => 'sess_deployit',
-		'timeout'  => '5',
+		'timeout'  => '30',
 	));
 
 /**

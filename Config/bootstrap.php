@@ -69,7 +69,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
-
+// will be loaded in config.php
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter. By default CakePHP bundles two filters:
  *
@@ -107,5 +107,5 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-// enable debugkit
-CakePlugin::load('DebugKit');
+// 加载自定义的配置
+require_once 'config.php';
