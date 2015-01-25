@@ -62,6 +62,7 @@ class ProjectsController extends AppController {
 		}
 		// 获取请求或修改后的结果
 		$project = $this->Project->findById($project_id);
+		$repository = $this->Repository->findByProjectId($project_id);
 
 		// 得到代码库的可用分支
 		 $repoPath = $this->Repository->initGitrepo($project_id);
