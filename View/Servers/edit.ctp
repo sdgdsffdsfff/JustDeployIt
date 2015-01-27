@@ -8,10 +8,11 @@
 		</div>
 	</div>
 	<div class='content--constrained'>
-		<form accept-charset="UTF-8" action="/servers/edit/<?php echo $Server['project_id']; ?>" autocomplete="off" class="edit_server" id="edit_server_<?php echo $Server['id']; ?>" method="post">
+		<form accept-charset="UTF-8" action="/servers/edit/<?php echo $Server['project_id']; ?>/<?php echo $Server['id']; ?>" autocomplete="off" class="edit_server" id="edit_server_<?php echo $Server['id']; ?>" method="post">
 			<div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" />
-				<input name="_method" type="hidden" value="patch" />
 				<input name="authenticity_token" type="hidden" value="YyvJGdeB6KmHOTGVNWGwPXlD00PLTiOFwngTc6Jr38c=" />
+				<input name="server[project_id]" type="hidden" value="<?php echo $Server['project_id']; ?>" />
+				<input name="server[id]" type="hidden" value="<?php echo $Server['id']; ?>" />
 			</div>
 			<div class='section section--first section--skinny box'>
 				<h3 class='form-heading form-heading--spaced g-heading-beta'>Choose Protocol</h3>
@@ -31,53 +32,9 @@
 				</div>
 			</div>
 			<div class='js-protocol-container'>
-				<div class='section section--first section--skinny box'>
-					<h3 class='form-heading form-heading--spaced g-heading-beta'>FTP Server Configuration</h3>
-					<div class='form-group'>
-						<label class="form-label" for="server_hostname">Hostname</label>
-						<input class="form-control" id="server_hostname" name="server[hostname]" type="text" value="<?php echo $Server['hostname']; ?>" />
-					</div>
-					<div class='form-group'>
-						<label class="form-label" for="server_port">Port</label>
-						<input class="form-control" id="server_port" name="server[port]" type="text" value="<?php echo $Server['port']; ?>" />
-						<p class='form-hint'>Leave blank to use default (21).</p>
-					</div>
-					<div class='form-group'>
-						<label class="form-label" for="server_username">Username</label>
-						<input class="form-control" id="server_username" name="server[username]" type="text" value="<?php echo $Server['username']; ?>" />
-						<p class='form-hint form-hint--warning is-hidden'>
-							In the interests of security we do not recommend you deploy with your root user.
-						</p>
-					</div>
-					<div class='form-group'>
-						<label class="form-label" for="server_password">Password</label>
-						<input class="form-control" id="server_password" name="server[password]" type="password" />
-					</div>
-					<div class='form-group'>
-						<label class="form-checkbox" for="server_passive"><input name="server[passive]" type="hidden" value="0" />
-							<input checked="checked" class="form-checkbox__input" id="server_passive" name="server[passive]" type="checkbox" value="<?php echo $Server['passive']; ?>" />
-							<span class='form-checkbox__text'>Use passive (PASV) mode</span>
-						</label>
-						<p class='form-hint'>Using passive (PASV) mode may be helpful if you're having firewall issues with your server.</p>
-					</div>
-					<div class='form-group'>
-						<label class="form-checkbox" for="server_force_hidden_files">
-							<input name="server[force_hidden_files]" type="hidden" value="<?php echo $Server['force_hidden_files']; ?>" />
-							<input class="form-checkbox__input" id="server_force_hidden_files" name="server[force_hidden_files]" type="checkbox" value="<?php echo $Server['force_hidden_files']; ?>" />
-							<span class='form-checkbox__text'>Force the server to report hidden files</span>
-						</label>
-						<p class='form-hint'>
-							Some FTP servers do not report hidden files like <code>.gitignore</code> by default.
-							Check this box if yours does not report hidden files.
-						</p>
-					</div>
-					<div class='form-group'>
-						<label class="form-label" for="server_server_path">Deployment Path</label>
-						<input class="form-control" id="server_server_path" name="server[server_path]" type="text" value="deployment" />
-						<p class='form-hint'>Where on the server should your files be placed (for example, <strong>public_html/</strong> or <strong>/absolute/path/here</strong>).</p>
-					</div>
-				</div>
-
+				<?php
+				echo $this->element('servers/edit_'.$Server['type']);
+				?>
 			</div>
 			<div class='section section--first section--skinny box'>
 				<h3 class='form-heading form-heading--spaced g-heading-beta'>Server Group</h3>
@@ -107,7 +64,8 @@
 				<div class='form-group'>
 					<label class="form-label" for="server_branch">Branch to deploy from</label>
 					<div class='form-select'>
-						<select disabled="disabled" id="server_branch" name="server[branch]"><option selected="selected" value="">Group default ()</option>
+						<select disabled="disabled" id="server_branch" name="server[branch]">
+							<option selected="selected" value="">Group default ()</option>
 							<option value="dev_zsk">dev_zsk</option>
 							<option value="dev_zsk2">dev_zsk2</option>
 							<option value="master">master</option></select>
