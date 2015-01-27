@@ -23,11 +23,19 @@ echo $this->element('common/header');
 if(isset($needProjectMenuBar)) {
 	echo $this->element('common/navbar');
 }
+
+// 显示项目级别的提示信息
+echo $this->Session->flash('project');
 ?>
 
 <div class='container clearfix'>
 
-<?php echo $this->fetch('content'); ?>
+<?php
+// 显示功能级别的提示信息
+echo $this->Session->flash('function');
+
+echo $this->fetch('content');
+?>
 
 </div>
 <?php echo $this->element('common/footer'); ?>

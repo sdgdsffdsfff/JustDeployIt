@@ -8,8 +8,8 @@
  *   3. success
  *   4. neutral
  * 使用位置为两处：
- *   1. 用在<div class='container clearfix'>之后的flashes，第一行，用于当前功能的操作结果提示
- *   2. 用在common_header和common_menu之后的flashes，一般用于项目级的操作结果提示，此时需要封装到<div class='container'>之中</div>
+ *   1. 用在<div class='container clearfix'>之后的flashes，第一行，用于当前功能的操作结果提示。setflash时的key值为function
+ *   2. 用在common_header和common_menu之后的flashes，一般用于项目级的操作结果提示，此时需要封装到<div class='container'>之中</div>。setflash时的key值为project
  */
 ?>
 <?php
