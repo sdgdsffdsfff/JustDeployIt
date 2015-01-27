@@ -7,11 +7,11 @@
  * 本视图比较特殊，对Servers/add.ctp而言，它是一个element被引用。对Serves/ssh.ctp、Servers/ftp.ctp而言，它是用来扩展的父视图
  */
 ?>
-		<form accept-charset="UTF-8" action="/servers/new/<?php echo $Server['project_id']; ?>" autocomplete="off" class="new_server" id="new_server" method="post">
+		<form accept-charset="UTF-8" action="/servers/new/<?php echo $Project['id']; ?>" autocomplete="off" class="new_server" id="new_server" method="post">
 			<div style="display:none">
 				<input name="utf8" type="hidden" value="&#x2713;" />
 				<input name="authenticity_token" type="hidden" value="YyvJGdeB6KmHOTGVNWGwPXlD00PLTiOFwngTc6Jr38c=" />
-				<input name="server[project_id]" type="hidden" value="<?php echo $Server['project_id']; ?>" />
+				<input name="server[project_id]" type="hidden" value="<?php echo $Project['id']; ?>" />
 			</div>
 			<div class='section section--first section--skinny box'>
 				<h3 class='form-heading form-heading--spaced g-heading-beta'>Choose Protocol</h3>
@@ -54,7 +54,7 @@
 					<p class='form-hint'>
 						Select a group that this server will belong to. This server will then be deployed
 						simultaniously with the other servers in the group.
-						<a class="js-manage-server-groups" href="/server_groups/<?php echo $Server['project_id']; ?>">Manage Server Groups</a>.
+						<a class="js-manage-server-groups" href="/server_groups/<?php echo $Project['id']; ?>">Manage Server Groups</a>.
 					</p>
 				</div>
 			</div>
