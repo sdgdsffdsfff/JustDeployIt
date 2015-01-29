@@ -63,6 +63,11 @@ class PagesController extends AppController {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
+		// 获取用户所有的项目
+		$this->loadModel('Project');
+		$projects = $this->Project->findAllByUserId($this->Auth->user('id'));
+
+		$this->set('ProjectList', $projects);
 
 		try {
 			$this->render(implode('/', $path));

@@ -11,11 +11,8 @@ class ServersController extends AppController
     public function beforeFilter() {
         parent::beforeFilter();
 
-        $this->loadModel('Project');
-        $project = $this->Project->findById($this->request->pass[0]);
-
-        $this->set($project);
-        $this->set('needProjectMenuBar', true);
+        $this->needProjectMenuBar = true;
+        $this->set('needProjectMenuBar', $this->needProjectMenuBar);
     }
 
     public function index($project_id) {

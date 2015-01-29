@@ -26,22 +26,22 @@
                     <li class='sub-menu__item'>
                         <a class="sub-menu__link" href="/projects/deepphpoop/excluded_files">Excluded Files</a>
                     </li>
-                    <li class='sub-menu__item'>
-                        <a class="sub-menu__link" href="/projects/deepphpoop/notifications">Notifications</a>
-                    </li>
-                    <li class='sub-menu__item'>
-                        <a class="sub-menu__link" href="/projects/deepphpoop/commands">SSH Commands</a>
-                    </li>
                 </ul>
             </li>
+            <?php
+            if(isset($Repository)):
+            ?>
             <li class='second-menu__item'>
-                <a href="https://github.com/shukai0828/DeepPHPOOP/tree/master">Browse Repository</a>
+                <a href="<?php echo substr($Repository['url'], 0, strrpos($Repository['url'], '.')) ?>/tree/master">Browse Repository</a>
             </li>
             <li class='second-menu__item'>
-                <a href="https://github.com/shukai0828/DeepPHPOOP/commits/master">View Commits</a>
+                <a href="<?php echo substr($Repository['url'], 0, strrpos($Repository['url'], '.')) ?>/commits/master">View Commits</a>
             </li>
+            <?php
+            endif;
+            ?>
             <li class='second-menu__item second-menu__item--deploy'>
-                <a href="/projects/deepphpoop/deployments/new">Deploy Now</a>
+                <a href="/deployments/new/<?php echo $Project['id'];?>">Deploy Now</a>
             </li>
         </ul>
     </div>

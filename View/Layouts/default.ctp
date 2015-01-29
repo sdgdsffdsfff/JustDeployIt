@@ -23,12 +23,30 @@ echo $this->element('common/header');
 if(isset($needProjectMenuBar)) {
 	echo $this->element('common/navbar');
 }
-
-// 显示项目级别的提示信息
-echo $this->Session->flash('project');
 ?>
 
 <div class='container clearfix'>
+	<?php
+	if(isset($needProjectMenuBar)) :
+		if(empty($LastDeployment)) :
+	?>
+	<div class='container'>
+		<div class='flash flash--spaced flash--neutral'>
+			<p>This project hasn&rsquo;t been deployed yet. <a href="/deployments/new/<?php echo $Project['id']; ?>">Deploy now</a>.</p>
+		</div>
+	</div>
+	<?php
+	else :
+	?>
+	<div class='container'>
+		<div class='flash flash--spaced flash--neutral'>
+			<p>This project was last deployed at <?php echo date('Y-m-d H:i:s', $LastDeployment['Deployment']['created']); ?>. <a href="/deployments/view/<?php echo $LastDeployment['Deployment']['id'];?>">View details</a>.</p>
+		</div>
+	</div>
+	<?php
+	endif;
+	endif;
+	?>
 
 <?php
 // 显示功能级别的提示信息

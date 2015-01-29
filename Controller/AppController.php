@@ -60,4 +60,29 @@ class AppController extends Controller {
             )
         )
     );
+
+    public $needProjectMenuBar = false;
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+
+        // 需要用到关联项目的信息
+        if(in_array($this->request['controller'], array('servers', 'server_groups', 'config_files', 'exclude_files'))) {
+            $this->loadModel('Project');
+            $project = $this->Project->findById($this->request->pass[0]);
+
+            $this->set($project);
+        }
+    }
+
+    public function beforeRender() {
+        parent::beforeRender();
+
+        if($this->needProjectMenuBar) {
+            $this->loadModel('Deployment');
+            $lastDeployment = $this->Deployment->find('first', array('conditions' => array('project_id' => $this->request->pass[0]), 'order' => array('id desc')));
+
+            $this->set('LastDeployment', $lastDeployment);
+        }
+    }
 }

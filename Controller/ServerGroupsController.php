@@ -7,14 +7,7 @@ App::uses('AppController', 'Controller');
 class ServerGroupsController extends AppController {
 
     public function beforeFilter() {
-
         parent::beforeFilter();
-
-        $this->loadModel('Project');
-        $project = $this->Project->findById($this->request->pass[0]);
-
-        $this->set($project);
-        $this->set('needProjectMenuBar', true);
 
         // 本控制器和视图仅在异步调用中用到
         $this->layout = '';

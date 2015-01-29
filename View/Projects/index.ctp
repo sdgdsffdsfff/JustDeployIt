@@ -78,21 +78,22 @@ else :
 	<ul class='project-listings layout-list clearfix js-project-list'>
 		<?php
 		foreach($projectList as $key => $val) :
+			extract($val);
 		?>
 		<li class='project-listing js-project' data-last-deployed='1420966178' data-name='DeepPHPOOP'>
 			<div class='box'>
-				<h3 class='g-heading-beta project-listing__name'><a href="/projects/edit/<?php echo $val['Project']['id'];?>"><?php echo $val['Project']['name'];?></a></h3>
+				<h3 class='g-heading-beta project-listing__name'><a href="/projects/edit/<?php echo $Project['id'];?>"><?php echo $Project['name'];?></a></h3>
 				<div class='project-listing__bar'>
 					<div class='project-listing__deployments'>
-						<span class='project-listing__count'>3</span>
+						<span class='project-listing__count'><?php echo count($Deployment);?></span>
 						<span class='project-listing__count-title'>Deployments</span>
 					</div>
 					<div class='project-listing__servers'>
-						<span class='project-listing__count'>1</span>
+						<span class='project-listing__count'><?php echo count($Server);?></span>
 						<span class='project-listing__count-title'>Servers</span>
 					</div>
 					<div class='project-listing__deploy'>
-						<a class="project-listing__deploy-button" href="/projects/deepphpoop/deployments/new">Deploy</a>
+						<a class="project-listing__deploy-button" href="/deployments/new/<?php echo $Project['id'];?>">Deploy</a>
 					</div>
 				</div>
 			</div>

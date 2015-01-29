@@ -9,6 +9,8 @@ class ProjectsController extends AppController {
 	public function index() {
 		// 根据用户身份筛选其所有的项目
 		// TODO: 应该以user_projects为依据
+		$this->Project->bindModel(array('hasMany' => array('Deployment' => array('className' => 'Deployment'))));
+		$this->Project->bindModel(array('hasMany' => array('Server' => array('className' => 'Server'))));
 		$projects = $this->Project->find('all', array('conditions' => array('user_id' => $this->Auth->user('id'))));
 
 		$this->set('projectList', $projects);
@@ -34,13 +36,14 @@ class ProjectsController extends AppController {
 
 	public function edit($project_id) {
 		// 需要项目级导航菜单
-		$this->set('needProjectMenuBar', true);
+		$this->needProjectMenuBar = true;
+		$this->set('needProjectMenuBar', $this->needProjectMenuBar);
 
 		$project = $this->Project->findById($project_id);
 
 		// 非法id传入处理
 		if(empty($project)) {
-			throw new NotFoundException('Could not find that post');
+			throw new NotFoundException('Could not find that project');
 		}
 
 		// 初始化gidaa
@@ -86,7 +89,8 @@ class ProjectsController extends AppController {
 	}
 	public function repository($project_id) {
 		// 需要项目级导航菜单
-		$this->set('needProjectMenuBar', true);
+		$this->needProjectMenuBar = true;
+		$this->set('needProjectMenuBar', $this->needProjectMenuBar);
 		// 请求修改
 		if($this->request->is('post')) {
 			$this->loadModel('Repository');
