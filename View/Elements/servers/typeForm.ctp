@@ -41,10 +41,11 @@
 						<select id="server_server_group_identifier" name="server[server_group_identifier]">
 							<option value="">Individual Servers</option>
 							<?php
-							if(isset($ServerGroup)):
-							foreach($ServerGroup as $key => $val):
+							if(isset($ServerGroupList)):
+							foreach($ServerGroupList as $key => $val):
+								extract($val);
 							?>
-							<option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
+							<option value="<?php echo $ServerGroup['id']?>"><?php echo $ServerGroup['name']?></option>
 							<?php
 							endforeach;
 							endif;
@@ -54,7 +55,7 @@
 					<p class='form-hint'>
 						Select a group that this server will belong to. This server will then be deployed
 						simultaniously with the other servers in the group.
-						<a class="js-manage-server-groups" href="/server_groups/<?php echo $Project['id']; ?>">Manage Server Groups</a>.
+						<a class="js-manage-server-groups" href="/server_groups/index/<?php echo $Project['id']; ?>">Manage Server Groups</a>.
 					</p>
 				</div>
 			</div>

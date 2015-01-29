@@ -20,14 +20,20 @@ class ServersController extends AppController
 
     public function index($project_id) {
         // TODO:用户权限判断
-       $serverList = $this->Server->findAllByProjectId($project_id);
+        // 独立服务器
+       $serverList = $this->Server->find('all', array('conditions' => array('project_id' => $project_id, 'server_group_identifier' => 0)));
+        // 服务器组
+        $this->loadModel('ServerGroup');
+        $this->ServerGroup->bindModel(array('hasMany' => array('Server' => array( 'className' => 'Server', 'foreignKey' => 'server_group_identifier'))));
+        $groupList = $this->ServerGroup->find('all', array('conditions' => array('ServerGroup.project_id' => $project_id)));
 
         $this->set('ServerList', $serverList);
+        $this->set('GroupList',  $groupList);
     }
 
     public function add($project_id)
     {
-        // TODO:需要进行服务器可访问检查
+        // TODO:需要进行服务器可访问检查，密码保存时要加密
         if ($this->request->is('post')) {
             $server = $this->Server->create($this->request->data['server']);
             $server['Server']['user_id'] = $this->Auth->user('id');
@@ -55,17 +61,20 @@ class ServersController extends AppController
             $server = $this->Server->create($this->request->data['server']);
             $server['Server']['user_id'] = $this->Auth->user('id');
             if($this->Server->save($server)) {
-                $this->Session->setFlash('Server has been modified successfully!', 'common/flash', array('type' => 'success'), 'function');
+                $this->Session->setFlash('Server has been updated successfully!', 'common/flash', array('type' => 'success'), 'function');
                 $this->redirect(array('action' => 'index', $project_id));
             } else {
                 $this->Session->setFlash('Something went wrong when saving server!', 'common/flash', array('type' => 'alert'), 'function');
                 $this->set($server);
             }
         }  else {
-
+            $this->_setBaseInfo($project_id);
             $server = $this->Server->findById($id);
+            $this->loadModel('ServerGroup');
+            $group  = $this->ServerGroup->findById($server['Server']['server_group_identifier']);
 
             $this->set($server);
+            $this->set($group);
         }
     }
 
@@ -84,14 +93,14 @@ class ServersController extends AppController
     protected function _setBaseInfo($project_id) {
         // 获取可用的ServerGroup
         $this->loadModel('ServerGroup');
-        $serverGroup = $this->ServerGroup->findByProjectId($project_id);
+        $serverGroupList = $this->ServerGroup->findAllByProjectId($project_id);
         // 获取可用的分支
         $this->loadModel('Repository');
         $repository = $this->Repository->findByProjectId($project_id);
         $repoPath = $this->Repository->initGitrepo($project_id);
         $repository['Repository']['branches'] = $this->Repository->branches($repoPath);
 
-        $this->set($serverGroup);
+        $this->set('ServerGroupList', $serverGroupList);
         $this->set($repository);
     }
 }
