@@ -28,7 +28,12 @@ routes
 2. new_project_server
 3. new_project_server_group
 2. 在ProjectCreation.prototype._submitProject里的url: projects_path变成url: new_project_path
- 
+3. Element.ManageServerGroups = (function () 函数定义底部identifier === currentlySelected改成identifier == currentlySelected，三个等号变成两个等号
+
+ ## css主要修改点 ##
+
+1. 所有图片的引用路径改到img
+
 ## 分支优先级规则 ##
 
 1. ServerGroups.branch > Server.Branch > Project.Branch

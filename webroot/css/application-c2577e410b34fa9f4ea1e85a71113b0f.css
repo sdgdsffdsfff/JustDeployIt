@@ -3247,11 +3247,6 @@ code, kbd, pre, samp {
     border-bottom: 0
 }
 
-.repo-select__repo--full {
-    float: none;
-    width: 100%
-}
-
 .repo-select__search {
     background: #f7f7f7;
     border-bottom: 1px solid #eaeaea;
@@ -3325,6 +3320,11 @@ code, kbd, pre, samp {
         float: left;
         width: 75%
     }
+}
+
+.repo-select__repo--full {
+    float: none;
+    width: 100%
 }
 
 .responsive-video {

@@ -37,8 +37,3 @@ if(isset($this->request->pass[0]) && is_numeric($this->request->pass[0])) {
 
     //]]>
 </script>
-<!--
-<?php
-print_r($this->request);
-?>
--->
