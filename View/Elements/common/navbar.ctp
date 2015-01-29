@@ -9,15 +9,15 @@
         </a>
         <ul class='second-menu'>
             <li class='second-menu__item'>
-                <a class="second-menu__link" href="/deployments/index/<?php echo $Project['id'];?>">Deployments</a>
+                <a class="<?php if($this->request['controller'] == 'deployments') echo 'is-active'; ?> second-menu__link" href="/deployments/index/<?php echo $Project['id'];?>">Deployments</a>
             </li>
-            <li class='is-active is-dropdown second-menu__item'>
+            <li class='<?php if($this->request['controller'] != 'deployments') echo 'is-active'; ?> is-dropdown second-menu__item'>
                 <a class="second-menu__link second-menu__link--dropdown" href="/projects/edit/<?php echo $Project['id'];?>">Settings</a>
                 <ul class='sub-menu box box--heavy'>
-                    <li class='sub-menu__item'>
+                    <li class='<?php if($this->request['controller'] == 'projects' && $this->request['action'] == 'edit') echo 'is-active'; ?> sub-menu__item'>
                         <a class="sub-menu__link" href="/projects/edit/<?php echo $Project['id'];?>">General Settings</a>
                     </li>
-                    <li class='sub-menu__item'>
+                    <li class='<?php if($this->request['controller'] == 'servers') echo 'is-active'; ?> sub-menu__item'>
                         <a class="sub-menu__link" href="/servers/index/<?php echo $Project['id'];?>">Servers &amp; Groups</a>
                     </li>
                     <li class='sub-menu__item'>
@@ -29,7 +29,7 @@
                     <li class='sub-menu__item'>
                         <a class="sub-menu__link" href="/projects/deepphpoop/notifications">Notifications</a>
                     </li>
-                    <li class='is-active sub-menu__item'>
+                    <li class='sub-menu__item'>
                         <a class="sub-menu__link" href="/projects/deepphpoop/commands">SSH Commands</a>
                     </li>
                 </ul>

@@ -15886,11 +15886,11 @@ Modernizr.load = function () {
                 "verb": "GET"
             },
             "project_server_groups": {
-                "path": "/projects/:project_id/server_groups(.:format)",
+                "path": "/server_groups/index/:project_id(.:format)",
                 "verb": "GET"
             },
             "new_project_server_group": {
-                "path": "/projects/:project_id/server_groups/new(.:format)",
+                "path": "/server_groups/new/:project_id(.:format)",
                 "verb": "GET"
             },
             "edit_project_server_group": {

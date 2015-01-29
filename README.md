@@ -19,6 +19,21 @@ JustDeployIt
 
 当Controller为Projects时，`id`永远不会出现，`project_id`在new操作下可以不出现。
 
+## JS主要修改点 ##
+
+routes
+
+1. 所有icon的引用路径
+1. project_server_groups
+2. new_project_server
+3. new_project_server_group
+2. 在ProjectCreation.prototype._submitProject里的url: projects_path变成url: new_project_path
+ 
+## 分支优先级规则 ##
+
+1. ServerGroups.branch > Server.Branch > Project.Branch
+2. 每个级别中，branch为设置具体值时，自动沿用下一级的branch设置
+
 ### 邮件发送规则 ###
 
 1. 项目创建人将会收到所有项目配置更改的变动通知
