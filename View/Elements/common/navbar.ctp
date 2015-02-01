@@ -8,8 +8,8 @@
             <img alt="Menu Icon" class="second-navigation__toggle-img second-navigation__toggle-img--hide" src="/img/icons/icon-hide-3ee2bdbbde6b0a782e4c8d23241bccf6.svg" />
         </a>
         <ul class='second-menu'>
-            <li class='second-menu__item'>
-                <a class="<?php if($this->request['controller'] == 'deployments') echo 'is-active'; ?> second-menu__link" href="/deployments/index/<?php echo $Project['id'];?>">Deployments</a>
+            <li class='<?php if($this->request['controller'] == 'deployments') echo 'is-active'; ?> second-menu__item'>
+                <a class="second-menu__link" href="/deployments/index/<?php echo $Project['id'];?>">Deployments</a>
             </li>
             <li class='<?php if($this->request['controller'] != 'deployments') echo 'is-active'; ?> is-dropdown second-menu__item'>
                 <a class="second-menu__link second-menu__link--dropdown" href="/projects/edit/<?php echo $Project['id'];?>">Settings</a>
