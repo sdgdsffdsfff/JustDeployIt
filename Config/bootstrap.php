@@ -107,5 +107,16 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+
+// PHP5.3 namespace loader for Cake2.x
+spl_autoload_register(function ($class) {
+	foreach (App::path('Vendor') as $base) {
+		$path = $base . str_replace('\\', DS, $class) . '.php';
+		if (file_exists($path)) {
+			include $path;
+			return;
+		}
+	}
+});
 // 加载自定义的配置
 require_once 'config.php';
