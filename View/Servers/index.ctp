@@ -1,5 +1,3 @@
-<div class='container clearfix'>
-
     <div class='section section--first section--with-create box'>
         <div class='page-header'>
             <h2 class='page-header__title g-heading-alpha'>Servers</h2>
@@ -147,5 +145,3 @@
 
         </div>
     </div>
-
-</div>
