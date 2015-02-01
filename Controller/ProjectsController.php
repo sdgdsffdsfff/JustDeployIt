@@ -36,8 +36,8 @@ class ProjectsController extends AppController {
 
 	public function edit($project_id) {
 		// 需要项目级导航菜单
-		$this->needProjectMenuBar = true;
-		$this->set('needProjectMenuBar', $this->needProjectMenuBar);
+		$this->_needProjectMenuBar = true;
+		$this->set('needProjectMenuBar', $this->_needProjectMenuBar);
 
 		$project = $this->Project->findById($project_id);
 
@@ -89,8 +89,8 @@ class ProjectsController extends AppController {
 	}
 	public function repository($project_id) {
 		// 需要项目级导航菜单
-		$this->needProjectMenuBar = true;
-		$this->set('needProjectMenuBar', $this->needProjectMenuBar);
+		$this->_needProjectMenuBar = true;
+		$this->set('needProjectMenuBar', $this->_needProjectMenuBar);
 		// 请求修改
 		if($this->request->is('post')) {
 			$this->loadModel('Repository');
