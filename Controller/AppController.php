@@ -61,24 +61,36 @@ class AppController extends Controller {
         )
     );
 
-    public $needProjectMenuBar = false;
+    protected $_needProjectMenuBar = false;
+    /**
+     * 项目基本信息，包括代码仓库信息
+     *
+     * 大部分控制器都需要当前项目的基本信息进行运算，因此在父类里默认包含
+     *
+     * @var array
+     */
+    protected $_currentProjectDetail = array();
 
     public function beforeFilter() {
         parent::beforeFilter();
 
         // 需要用到关联项目的信息
-        if(in_array($this->request['controller'], array('servers', 'server_groups', 'config_files', 'exclude_files'))) {
-            $this->loadModel('Project');
-            $project = $this->Project->findById($this->request->pass[0]);
+        if(in_array($this->request['controller'], array('servers', 'server_groups', 'config_files', 'exclude_files', 'deployments'))) {
+            if(!empty($this->request->pass[0])) {
+                $this->loadModel('Project');
+                $this->Project->bindModel(array('hasOne' => array('Repository' => array('className' => 'Repository'))));
+                $project = $this->Project->findById($this->request->pass[0]);
+                $this->_currentProjectDetail = $project;
 
-            $this->set($project);
+                $this->set($project);
+            }
         }
     }
 
     public function beforeRender() {
         parent::beforeRender();
 
-        if($this->needProjectMenuBar) {
+        if($this->_needProjectMenuBar) {
             $this->loadModel('Deployment');
             $lastDeployment = $this->Deployment->find('first', array('conditions' => array('project_id' => $this->request->pass[0]), 'order' => array('id desc')));
 
