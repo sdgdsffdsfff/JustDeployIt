@@ -1,11 +1,31 @@
 <?php
 /**
- * 组装页面body的class值
+ * 组装页面body的class值和foot_js的初始化值
  *
- * 本项目的页面代码跟js库紧密结合，需要设置正确的
+ * 本项目的页面代码跟js库紧密结合，需要设置正确的body class和foot_js初始值才能正常工作
+ * body class的设置有三种情况：
+ *   1. 标准情况，为当前controller、action的名称组合
+ *   2. action为add，需要将action更换为new，因为new是php的关键词，但是前端默认要求用new
+ *   3. 部分特殊动作，由controller在需要时单独设定
+ *
+ * foot_j的设置有三个情况：
+ *   1. 具体controller的首字母大写
+ *   2. action跟body class一致
+ *   3. 标识project的id在部分页面下不需要，比如dashboards的页面，主要是非项目级别的控制器和操作
  */
-$js_action   = $this->request['action'] == 'add' ? 'new' : $this->request['action'];
-$body_class  = 'js-' . $this->request['controller'] . '-' . $js_action;
+
+// body class string
+if(!isset($BodyJsAction)) {
+	$BodyJsAction   = $this->request['action'] == 'add' ? 'new' : $this->request['action'];
+}
+$body_class  = 'js-' . $this->request['controller'] . '-' . $BodyJsAction;
+// foot js arguments
+$footJsArguments = array();
+$footJsArguments['action'] = $BodyJsAction;
+$footJsArguments['apps']   = ucfirst($this->request['controller']);
+// 为foot_js.ctp的Utility设置参数，如果请求URL里有传参，第一个一定是project_id
+$footJsArguments['project'] = isset($this->request->pass[0]) ? $this->request->pass[0] : '';
+
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -58,6 +78,6 @@ echo $this->fetch('content');
 
 </div>
 <?php echo $this->element('common/footer'); ?>
-<?php echo $this->element('common/foot_js'); ?>
+<?php echo $this->element('common/foot_js', $footJsArguments); ?>
 </body>
 </html>
