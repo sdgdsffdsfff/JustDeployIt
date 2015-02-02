@@ -155,7 +155,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * Turn off all caching application-wide.
  *
  */
-	//Configure::write('Cache.disable', true);
+	Configure::write('Cache.disable', true); // TODO: cache在生产环境的开启及机制决策
 
 /**
  * Enable cache checking.
