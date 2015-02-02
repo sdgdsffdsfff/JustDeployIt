@@ -3,7 +3,9 @@ JustDeployIt
 
 用于完成基于脚本语言的WEB应用程序的部署
 
+## 依赖库 ##
 
+1. Git => [PHP-Stream-Wrapper-for-Git][2]
 
 ## 规则 ##
 
@@ -26,13 +28,24 @@ routes
 1. 所有icon的引用路径
 1. project_server_groups
 2. new_project_server
+3. project_server
 3. new_project_server_group
+4. project_server_group
+4. commit_select_project_repository (new route rule and repository to repositories)
+5. latest_revision_project_repository (new route rule and repository to repositories)
+6. commit_info_project_repository (new route rule and repository to repositories)
 2. 在ProjectCreation.prototype._submitProject里的url: projects_path变成url: new_project_path
 3. Element.ManageServerGroups = (function () 函数定义底部identifier === currentlySelected改成identifier == currentlySelected，三个等号变成两个等号
 
- ## css主要修改点 ##
+## css主要修改点 ##
 
 1. 所有图片的引用路径改到img
+
+## TODO ##
+
+1. server的port默认值写入数据库，以及原来在默认为空情况下的视图处理逻辑
+2. flash的Project级类型看起来不太需求，精简flash.ctp的逻辑以及去掉Project/Function的逻辑
+3. Fetching information from repository，切换服务器时，起始commit的获取可能是个bug
 
 ## 分支优先级规则 ##
 
@@ -326,3 +339,8 @@ routes: {
   }
 },
 ```
+
+
+
+1: http://gitonomy.com/doc/gitlib/master/
+2. https://github.com/teqneers/PHP-Stream-Wrapper-for-Git

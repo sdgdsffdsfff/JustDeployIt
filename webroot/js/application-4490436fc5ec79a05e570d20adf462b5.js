@@ -12029,7 +12029,7 @@ window['Slip'] = (function () {
         if (transform) {
             return {
                 value: transform,
-                original: transform,
+                original: transform
             };
         }
 
@@ -16693,7 +16693,7 @@ window['Slip'] = (function () {
                 "verb": "GET"
             },
             "project_server": {
-                "path": "/projects/:project_id/servers/:id(.:format)",
+                "path": "/servers/index/:project_id/:id(.:format)",
                 "verb": "GET"
             },
             "project_server_groups": {
@@ -16709,11 +16709,11 @@ window['Slip'] = (function () {
                 "verb": "GET"
             },
             "project_server_group": {
-                "path": "/projects/:project_id/server_groups/:id(.:format)",
+                "path": "/server_groups/index/:project_id/:id(.:format)",
                 "verb": "GET"
             },
             "latest_revision_project_repository": {
-                "path": "/projects/:project_id/repository/latest_revision(.:format)",
+                "path": "/repositories/latest_revision/:project_id(.:format)",
                 "verb": "GET"
             },
             "caching_project_repository": {
@@ -16737,11 +16737,11 @@ window['Slip'] = (function () {
                 "verb": "GET"
             },
             "commit_select_project_repository": {
-                "path": "/projects/:project_id/repository/commit_select(.:format)",
+                "path": "/repositories/commit_select/:project_id(.:format)",
                 "verb": "GET"
             },
             "commit_info_project_repository": {
-                "path": "/projects/:project_id/repository/commit_info(.:format)",
+                "path": "/repositories/commit_info/:project_id(.:format)",
                 "verb": "GET"
             },
             "repo_list_project_repository": {
@@ -17723,7 +17723,7 @@ window['Slip'] = (function () {
         Deployments.prototype.create = function () {
             if ($('.js-preview-loading').length) {
                 this.previewDeployment = new Element.DeploymentPreview();
-            }
+            }[]
         };
 
         return Deployments;
