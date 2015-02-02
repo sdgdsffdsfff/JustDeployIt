@@ -994,4 +994,45 @@ class Repository extends AbstractRepository
 
         return $retVar;
     }
+
+    /**
+     * 切换分支
+     *
+     * 如果本地分支不存在，就创建远程同名分支
+     *
+     * @param string $branch
+     *
+     * @return bool
+     */
+    public function switchBranch($branch = 'master') {
+        if($this->getCurrentBranch() == $branch) {
+            return true;
+        }
+
+        // 本地分支若存在，进行切换
+        if(in_array($branch, $this->getBranches())) {
+            $result = $this->getGit()->{'checkout'}($this->getRepositoryPath(), array('-f', $branch));
+            $result->assertSuccess(
+                sprintf('Cannot switch branch %s from "%s"', $branch, $this->getRepositoryPath())
+            );
+
+            return true;
+        } else {
+            // 远程分支若存在，检出
+            $remoteBranches = $this->getBranches(self::BRANCHES_REMOTE);
+            foreach($remoteBranches as $val) {
+                $branchName = substr($val, strrpos($val, '/') + 1);
+                if($branchName == $branch)
+                {
+                    $result = $this->getGit()->{'branch'}($this->getRepositoryPath(), array('--track', $branch, $val));
+                    $result->assertSuccess(
+                        sprintf('Cannot create branch %s from "%s"', $branch, $this->getRepositoryPath())
+                    );
+                    return true;
+                }
+            }
+            // 若不存在，暂时不知该怎么处理
+            return false;
+        }
+    }
 }
