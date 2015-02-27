@@ -42,7 +42,7 @@
                     <label class="form-label" for="server_server_group">Server Group</label>
                     <div class='form-select'>
                         <select id="server_server_group_identifier" name="server[server_group_identifier]">
-                            <option value="">Individual Servers</option>
+                            <option value="0">Individual Servers</option>
                             <?php
                             // TODO: 增加或变更组时，本select自动变换值
                             if(isset($ServerGroupList)):

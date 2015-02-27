@@ -38,7 +38,6 @@ class ServersController extends AppController
     public function add($project_id)
     {
         // TODO:需要进行服务器可访问检查，密码保存时要加密
-        // TODO:port的默认值要写入数据库表
         if ($this->request->is('post')) {
             $server = $this->Server->create($this->request->data['server']);
             $server['Server']['user_id'] = $this->Auth->user('id');
@@ -102,8 +101,7 @@ class ServersController extends AppController
         // 获取可用的分支
         $this->loadModel('Repository');
         $repository = $this->Repository->findByProjectId($project_id);
-        $repoPath = $this->Repository->initGitrepo($project_id);
-        $repository['Repository']['branches'] = $this->Repository->branches($repoPath);
+        $repository['Repository']['branches'] = $this->Repository->branches($project_id);
 
         $this->set('ServerGroupList', $serverGroupList);
         $this->set($repository);
