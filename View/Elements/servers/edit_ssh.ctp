@@ -34,7 +34,7 @@
     </div>
     <div class='form-group'>
         <label class="form-label" for="server_server_path">Deployment Path</label>
-        <input class="form-control" id="server_server_path" name="server[server_path]" type="text" value="" />
+        <input class="form-control" id="server_server_path" name="server[server_path]" type="text" value="<?php echo $Server['server_path']; ?>" />
         <p class='form-hint'>Where on the server should your files be placed (for example, <strong>public_html/</strong> or <strong>/absolute/path/here</strong>).</p>
     </div>
 </div>
