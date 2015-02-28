@@ -119,4 +119,27 @@ class Server extends AppModel {
 		)
 	);
 */
+	public function beforeSave($options = array())
+	{
+		if(empty($this->data['Server']['port'])) {
+			switch ($this->data['Server']['type']) {
+			case 'ftp':
+				$this->data['Server']['port'] = 21;
+			case 'sftp':
+				$this->data['Server']['port'] = 22;
+			}
+		}
+
+		return true;
+	}
+
+	public function geRemoteFiles($server) {
+		App::import('Vendor', 'RFS', array('file' => 'RFS/FtpFactory.php'));
+		$rfs = FtpFactory::create($this->field('type'));
+		$rfs->connect($server['hostname'], $server['username'], $server['password'],$server['port']);
+
+		$remoteFiles = $rfs->getRemoteFilesRecursive($server['server_path']);
+
+		return $remoteFiles;
+	}
 }

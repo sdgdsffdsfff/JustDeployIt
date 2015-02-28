@@ -64,7 +64,11 @@ class ServersController extends AppController
         if($this->request->is('post')) {
             $server = $this->Server->create($this->request->data['server']);
             $server['Server']['user_id'] = $this->Auth->user('id');
-            if($this->Server->save($server)) {
+            // 密码为空时，表示不修改密码
+            if(empty($server['Server']['password'])) {
+                unset($server['Server']['password']);
+            }
+            if($this->Server->save($server, true, array_keys($server['Server']))) {
                 $this->Session->setFlash('Server has been updated successfully!', 'common/flash', array('type' => 'success'), 'function');
                 $this->redirect(array('action' => 'index', $project_id));
             } else {
@@ -76,6 +80,9 @@ class ServersController extends AppController
             $server = $this->Server->findById($id);
             $this->loadModel('ServerGroup');
             $group  = $this->ServerGroup->findById($server['Server']['server_group_identifier']);
+
+            // 保密起见，不显示密码
+            unset($server['Server']['password']);
 
             $this->set($server);
             $this->set($group);
