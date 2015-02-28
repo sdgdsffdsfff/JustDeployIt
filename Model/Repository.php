@@ -205,7 +205,24 @@ class Repository extends AppModel {
 
         return $commtInfo;
     }
+
     /**
+     * 返回代码库目录下当前状态的所有文件
+     *
+     * 包含文件所在的目录
+     *
+     * @param $project_id
+     *
+     * @return array
+     */
+    public function listDirectory($project_id)
+    {
+        if (gettype($this->_gitInstance) != 'object') {
+            $this->_initGitrepo($project_id);
+        }
+        return $this->_gitInstance->listDirectory();
+    }
+        /**
      * 初始化git的关键变量
      *
      * @param        $project_id
@@ -249,23 +266,17 @@ class Repository extends AppModel {
     /**
      * 获得所有本地分支
      *
-     * @param $repoPath
+     * @param $project_id
      *
      * @return array
      */
-    public function branches($repoPath) {
+    public function branches($project_id) {
 
-        if(!file_exists($repoPath)) {
-            return array();
+        if(gettype($this->_gitInstance) != 'object') {
+            $this->_initGitrepo($project_id);
         }
 
-        $gitRepo = Git::open($repoPath);
-        $branches = array();
-        if(Git::is_repo($gitRepo)) {
-            $branches = $gitRepo->list_branches();
-        }
-
-        return $branches;
+        return $this->_gitInstance->getBranches();
     }
 
     public function removeRepoDir($repoPath) {
