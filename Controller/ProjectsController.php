@@ -46,7 +46,7 @@ class ProjectsController extends AppController {
 			throw new NotFoundException('Could not find that project');
 		}
 
-		// 初始化gidaa
+		// 初始化git
 		$this->loadModel('Repository');
 		$repository = $this->Repository->findByProjectId($project_id);
 		$gitUrl     = $repository['Repository']['url'];
@@ -68,9 +68,7 @@ class ProjectsController extends AppController {
 		$repository = $this->Repository->findByProjectId($project_id);
 
 		// 得到代码库的可用分支
-		 $repoPath = $this->Repository->initGitrepo($project_id);
-		if(isset($reclone) )$this->Repository->cloneRepo($repoPath, $gitUrl);
-		$repository['Repository']['branches'] = $this->Repository->branches($repoPath);
+		$repository['Repository']['branches'] = $this->Repository->branches($project_id);
 
 		$this->set($repository);
 		$this->set($project);
