@@ -222,6 +222,12 @@ class Repository extends AppModel {
         }
         return $this->_gitInstance->listDirectory();
     }
+
+    public function getFileStat($project_id, $fileName) {
+        $filePath = Configure::read('GitSettings.repos_path').DS.$project_id.DS.$fileName;
+
+        return stat($filePath);
+    }
         /**
      * 初始化git的关键变量
      *

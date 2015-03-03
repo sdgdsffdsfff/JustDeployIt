@@ -16,6 +16,13 @@ class Server extends AppModel {
  */
 	public $displayField = 'name';
 
+    /**
+     * 远程服务器连接符
+     *
+     * @var resource
+     */
+    protected $_rfsResource;
+
 /**
  * Validation rules
  *
@@ -125,21 +132,37 @@ class Server extends AppModel {
 			switch ($this->data['Server']['type']) {
 			case 'ftp':
 				$this->data['Server']['port'] = 21;
+                break;
 			case 'sftp':
 				$this->data['Server']['port'] = 22;
+                break;
 			}
 		}
+
+        if(empty($this->data['Server']['server_group_identifer'])) {
+            $this->data['Server']['server_group_identifer'] = 0;
+        }
 
 		return true;
 	}
 
 	public function geRemoteFiles($server) {
-		App::import('Vendor', 'RFS', array('file' => 'RFS/FtpFactory.php'));
-		$rfs = FtpFactory::create($this->field('type'));
-		$rfs->connect($server['hostname'], $server['username'], $server['password'],$server['port']);
+        if (gettype($this->_rfsResource) != 'object') {
+            $this->_initRFS($server);
+        }
 
-		$remoteFiles = $rfs->getRemoteFilesRecursive($server['server_path']);
+		$remoteFiles = $this->_rfsResource->getRemoteFilesRecursive($server['server_path']);
 
 		return $remoteFiles;
 	}
+
+    public function getFileSizeAndMdtm($fileName) {
+        return $this->_rfsResource->getFileSizeAndMdtm($fileName);
+    }
+
+    protected function _initRFS($server) {
+        App::import('Vendor', 'RFS', array('file' => 'RFS/FtpFactory.php'));
+        $this->_rfsResource = FtpFactory::create($this->field('type'));
+        $this->_rfsResource->connect($server['hostname'], $server['username'], $server['password'],$server['port']);
+    }
 }
