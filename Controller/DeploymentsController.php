@@ -90,13 +90,59 @@ class DeploymentsController extends AppController {
         }
         $result = $this->$parentTarget[1]->findById($parentTarget[0]);
         if($parentTarget[1] == 'ServerGroup') {
-            $this->set('ServerList', $result['Server']); // hasMany
+            $ServerList = $result['Server'];
+            $this->set('ServerList', $ServerList); // hasMany
         } else {
-            $this->set('ServerList', array($result['Server'])); // find first
+            $ServerList = array($result['Server']);
+            $this->set('ServerList', $ServerList); // find first
         }
 
+        // 评估需要上传的本地文件和需要删除的服务器文件
+        $this->loadModel('Repository');
+        $repositoryFiles = $this->Repository->listDirectory($project_id);
+        foreach ($ServerList as $server) {
+            $this->loadModel('Server');
+            $remoteFiles = $this->Server->geRemoteFiles($server);
 
+            $toBeUploaded = $this->_getDiffRemoteAndRepository($project_id, $remoteFiles, $repositoryFiles);
+            $toBeRemoved  = array_diff($remoteFiles, $repositoryFiles);
+
+            $toBeUploadedList[$server['id']] = $toBeUploaded;
+            $toBeRemovedList[$server['id']]  = $toBeRemoved;
+        }
+
+        $this->set('toBeUploadedList', $toBeUploadedList);
+        $this->set('toBeRemovedList', $toBeRemovedList);
         $this->set('startRevisionInfo', $startRevisionInfo);
         $this->set('endRevisionInfo',   $endRevisionInfo);
+    }
+
+    protected function _getDiffRemoteAndRepository($project_id, $remoteFiles, $repositoryFiles) {
+
+        $toBeUploaded = array();
+        if(is_array($repositoryFiles)){
+            foreach($repositoryFiles as $fileName) {
+                if(in_array($fileName, $remoteFiles)) {
+                    if($this->_isToBeUploaded($this->Server->getFileSizeAndMdtm($fileName), $this->Repository->getFileStat($project_id, $fileName))) {
+                        $toBeUploaded[] = $fileName;
+                    }
+                } else {
+                    $toBeUploaded[] = $fileName;
+                }
+            }
+        }
+
+        return $toBeUploaded;
+    }
+
+    protected function _isToBeUploaded($remoteFileStat, $repositoryFileStat) {
+        if($repositoryFileStat['size'] != $remoteFileStat['size']) {
+            return true;
+        }
+        if($repositoryFileStat['mtime'] != $remoteFileStat['mdtm']) {
+            return true;
+        }
+
+        return false;
     }
 }

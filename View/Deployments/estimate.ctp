@@ -64,67 +64,29 @@ foreach($ServerList as $server) :
             <h4 class='g-heading-gamma'>To be uploaded…</h4>
         </div>
         <table class='table'>
-            <tbody></tbody>
+            <?php
+            if(!isset($toBeUploadedList[$server['id']])) :
+            ?>
+            <tbody>
+                <tr>
+                    <td class='u-text-center g-text-subtle'>
+                        No files will be uploaded in this deployment.
+                    </td>
+                </tr>
+            </tbody>
+            <?php
+            else:
+                foreach($toBeUploadedList[$server['id']] as $fileName) :
+            ?>
             <tr>
                 <td>
-                    <li>README.md</li>
+                    <li><?php echo $fileName;?></li>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <li>UnitTest/charpter03Test/DomainObjectTest.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>UnitTest/charpter03Test/ShopProductTest.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/BookProduct.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/CdProduct.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/DomainObject.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/ShopProduct.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/ShopProductWriter.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/TextProductWriter.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/XmlProductWriter.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/conf.php</li>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <li>charpter03/main.php</li>
-                </td>
-            </tr>
+            <?php
+                endforeach;
+            endif;
+            ?>
         </table>
     </div>
     <div class='preview-section'>
@@ -132,13 +94,29 @@ foreach($ServerList as $server) :
             <h4 class='g-heading-gamma'>To be removed…</h4>
         </div>
         <table class='table'>
-            <tbody>
-            <tr>
-                <td class='u-text-center g-text-subtle'>
-                    No files will be removed in this deployment.
-                </td>
-            </tr>
-            </tbody>
+            <?php
+            if(!isset($toBeRemovedList[$server['id']])) :
+                ?>
+                <tbody>
+                <tr>
+                    <td class='u-text-center g-text-subtle'>
+                        No files will be removed in this deployment.
+                    </td>
+                </tr>
+                </tbody>
+            <?php
+            else:
+                foreach($toBeRemovedList[$server['id']] as $fileName) :
+                    ?>
+                    <tr>
+                        <td>
+                            <li><?php echo $fileName;?></li>
+                        </td>
+                    </tr>
+                <?php
+                endforeach;
+            endif;
+            ?>
         </table>
     </div>
 
