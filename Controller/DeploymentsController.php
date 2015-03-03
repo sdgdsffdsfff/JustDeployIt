@@ -13,16 +13,14 @@ class DeploymentsController extends AppController {
         $this->set('needProjectMenuBar', $this->_needProjectMenuBar);
     }
 
-    public function act($project_id_str) {
+    public function add($project_id_str) {
+
         // 传入值可能以“.js”结尾
         $project_id_arr = explode('.', $project_id_str);
         $project_id = $project_id_arr[0];
-        if(isset($project_id_arr[1])) { // 进行预览计算
+        if(isset($project_id_arr[1]) and $project_id_arr[1] == 'js') { // 进行预览计算
             return $this->_estimate($project_id);
         }
-    }
-
-    public function add($project_id) {
 
         if($this->request->is('post')) {
             if(isset($this->request->data['preview'])) {
@@ -39,13 +37,15 @@ class DeploymentsController extends AppController {
                     deployment[branch]:master
                     preview: // 预览，编辑时的键为edit
                 */
-                $this->view = 'create';
+                $this->view = 'preview';
                 $viewBodyJsAction = 'create'; // 特殊的action参数，用于设定页面的body class，详见layouts/default.ctp
 
                 $this->set('BodyJsAction', $viewBodyJsAction);
-            }
 
-            return;
+                return;
+            } elseif (isset($this->request->data['edit'])) { // Make Changes按钮的逻辑支持
+                // 暂无额外行为，post数据忽略，TODO: 需要看看deployhq的处理逻辑
+            }
         }
 
         // 独立服务器

@@ -20,7 +20,7 @@
         <p class='form-paragraph'>
             If you're happy with the information outlined above, just hit the "Run Deployment" button or click "Go back to make changes" to make changes. Once you have approved the deployment you will not be able to cancel it through this system.
         </p>
-        <form accept-charset="UTF-8" action="/deployments/act/<?php echo $Project['id'];?>" class="new_deployment" id="new_deployment" method="post">
+        <form accept-charset="UTF-8" action="/deployments/new/<?php echo $Project['id'];?>" class="new_deployment" id="new_deployment" method="post">
             <div style="display:none">
                 <input name="utf8" type="hidden" value="&#x2713;" />
                 <input name="authenticity_token" type="hidden" value="4KixzdUUL2+E/WLOW6xvPIK5ydNR5egmlK76+SB1KKk=" />
