@@ -839,6 +839,7 @@ class Repository extends AbstractRepository
             '--name-only',
             '--full-name',
             '-z',
+            '-r',
             $ref,
             $directory
         ));
