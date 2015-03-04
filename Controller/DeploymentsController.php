@@ -28,7 +28,7 @@ class DeploymentsController extends AppController {
                  * POST的数据
                     utf8:✓
                     authenticity_token:gw5yNsLC2NJwoOZZmYeK41LphlxJJ0jDXFQq8xOVV9o=
-                    deployment[parent_identifier]:1.Server // or 1.Group，数字表示ID，Server和Group表示该ID是独立服务器或者服务器组
+                    deployment[parent_identifier]:1.Server // or 1.ServerGroup，数字表示ID，Server和Group表示该ID是独立服务器或者服务器组
                     deployment[start_revision]:
                     deployment[end_revision]:fc11bd753f20577727986a13251a0d565eeee8d4
                     deployment[copy_config_files]:0
@@ -37,10 +37,25 @@ class DeploymentsController extends AppController {
                     deployment[branch]:master
                     preview: // 预览，编辑时的键为edit
                 */
-                $this->view = 'preview';
-                $viewBodyJsAction = 'create'; // 特殊的action参数，用于设定页面的body class，详见layouts/default.ctp
+                $this->view = 'create';
+                $this->set('BodyJsAction', 'create'); // 特殊的action参数，用于设定页面的body class，详见layouts/default.ctp
 
-                $this->set('BodyJsAction', $viewBodyJsAction);
+                return;
+            } elseif (isset($this->request->data['submit'])) { // 执行部署
+                $deployment = $this->Deployment->create($this->request->data['deployment']);
+
+                $deployment['Deployment']['user_id']    = $this->Auth->user('id');
+                $deployment['Deployment']['project_id'] = $project_id;
+                $tmpArr = explode('.', $deployment['Deployment']['parent_identifier']);
+                $deployment['Deployment']['parent_identifier'] = $tmpArr[0];
+                $deployment['Deployment']['parent_type'] = $tmpArr[1];
+                $deployment['Deployment']['time_start']  = date('Y-m-d H:i:s');
+
+                $this->Deployment->save($deployment, true, array_keys($deployment['Deployment']));
+
+                $this->view = 'show';
+                $this->set('BodyJsAction', 'show'); // 特殊的action参数，用于设定页面的body class，详见layouts/default.ctp
+                $this->set('BodyJsRailsVar', array('deployment' => $this->Deployment->getInsertID()));
 
                 return;
             } elseif (isset($this->request->data['edit'])) { // Make Changes按钮的逻辑支持
@@ -73,7 +88,7 @@ class DeploymentsController extends AppController {
             deployment[start_revision]:
             deployment[end_revision]:fc11bd753f20577727986a13251a0d565eeee8d4
             deployment[server_id]:
-            deployment[parent_identifier]:1.Server // or 1.Group
+            deployment[parent_identifier]:1.Server // or 1.ServerGroup
             deployment[copy_config_files]:1
             deployment[email_notify]:0
             deployment[branch]:master

@@ -37,7 +37,7 @@ class Deployment extends AppModel {
 		),
 		'parent_type' => array(
 			'inList' => array(
-				'rule' => array('Server', 'Group'),
+				'rule' => array('inList', array('Server', 'ServerGroup')),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

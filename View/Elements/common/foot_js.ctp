@@ -12,6 +12,9 @@ $RailsVars["vwp_token"]     = "13c9299896384ac5ac3cf68c";
 if(!empty($project)) {
     $RailsVars["project"] = $project;
 }
+if(isset($BodyJsRailsVar)) {
+    $RailsVars = array_merge($RailsVars, $BodyJsRailsVar);
+}
 ?>
 <script src="/js/application-4490436fc5ec79a05e570d20adf462b5.js"></script>
 <script>

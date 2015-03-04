@@ -59,7 +59,7 @@ if(isset($needProjectMenuBar)) :
 		?>
 		<div class='container'>
 			<div class='flash flash--spaced flash--neutral'>
-				<p>This project was last deployed at <?php echo date('Y-m-d H:i:s', $LastDeployment['Deployment']['created']); ?>. <a href="/deployments/view/<?php echo $LastDeployment['Deployment']['id'];?>">View details</a>.</p>
+				<p>This project was last deployed at <?php echo $LastDeployment['Deployment']['time_start']; ?>. <a href="/deployments/view/<?php echo $LastDeployment['Deployment']['id'];?>">View details</a>.</p>
 			</div>
 		</div>
 	<?php
