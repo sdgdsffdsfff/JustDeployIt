@@ -92,7 +92,7 @@ class AppController extends Controller {
 
         if($this->_needProjectMenuBar) {
             $this->loadModel('Deployment');
-            $lastDeployment = $this->Deployment->find('first', array('conditions' => array('project_id' => $this->request->pass[0]), 'order' => array('id desc')));
+            $lastDeployment = $this->Deployment->find('first', array('conditions' => array('project_id' => $this->request->pass[0], 'status' => 'completed'), 'order' => array('id desc')));
 
             $this->set('LastDeployment', $lastDeployment);
         }

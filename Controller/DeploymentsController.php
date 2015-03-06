@@ -49,7 +49,7 @@ class DeploymentsController extends AppController {
                 $tmpArr = explode('.', $deployment['Deployment']['parent_identifier']);
                 $deployment['Deployment']['parent_identifier'] = $tmpArr[0];
                 $deployment['Deployment']['parent_type'] = $tmpArr[1];
-                $deployment['Deployment']['time_start']  = date('Y-m-d H:i:s');
+                $deployment['Deployment']['status']  = 'pending';
 
                 $this->Deployment->save($deployment, true, array_keys($deployment['Deployment']));
 
@@ -130,13 +130,11 @@ class DeploymentsController extends AppController {
         $repositoryFiles = $this->Repository->listDirectory($project_id);
         foreach ($ServerList as $server) {
             $this->loadModel('Server');
-            $remoteFiles = $this->Server->geRemoteFiles($server);
 
-            $toBeUploaded = $this->_getDiffRemoteAndRepository($project_id, $remoteFiles, $repositoryFiles);
-            $toBeRemoved  = array_diff($remoteFiles, $repositoryFiles);
+            $diffsArr = $this->Server->getDiffRemoteAndRepository($server, $repositoryFiles);
 
-            $toBeUploadedList[$server['id']] = $toBeUploaded;
-            $toBeRemovedList[$server['id']]  = $toBeRemoved;
+            $toBeUploadedList[$server['id']] = $diffsArr['toBeUploaded'];
+            $toBeRemovedList[$server['id']]  = $diffsArr['toBeRemoved'];
         }
 
         $this->set('toBeUploadedList', $toBeUploadedList);
@@ -145,32 +143,4 @@ class DeploymentsController extends AppController {
         $this->set('endRevisionInfo',   $endRevisionInfo);
     }
 
-    protected function _getDiffRemoteAndRepository($project_id, $remoteFiles, $repositoryFiles) {
-
-        $toBeUploaded = array();
-        if(is_array($repositoryFiles)){
-            foreach($repositoryFiles as $fileName) {
-                if(in_array($fileName, $remoteFiles)) {
-                    if($this->_isToBeUploaded($this->Server->getFileSizeAndMdtm($fileName), $this->Repository->getFileStat($project_id, $fileName))) {
-                        $toBeUploaded[] = $fileName;
-                    }
-                } else {
-                    $toBeUploaded[] = $fileName;
-                }
-            }
-        }
-
-        return $toBeUploaded;
-    }
-
-    protected function _isToBeUploaded($remoteFileStat, $repositoryFileStat) {
-        if($repositoryFileStat['size'] != $remoteFileStat['size']) {
-            return true;
-        }
-        if($repositoryFileStat['mtime'] != $remoteFileStat['mdtm']) {
-            return true;
-        }
-
-        return false;
-    }
 }

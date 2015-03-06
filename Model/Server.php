@@ -165,4 +165,44 @@ class Server extends AppModel {
         $this->_rfsResource = FtpFactory::create($this->field('type'));
         $this->_rfsResource->connect($server['hostname'], $server['username'], $server['password'],$server['port']);
     }
+
+    public function getDiffRemoteAndRepository($server, $repositoryFiles) {
+
+        $remoteFiles = $this->geRemoteFiles($server);
+
+        $toBeRemoved  = array_diff($remoteFiles, $repositoryFiles);
+
+        $toBeUploaded = array();
+
+        if(is_array($repositoryFiles)){
+            foreach($repositoryFiles as $fileName) {
+                if(in_array($fileName, $remoteFiles)) {
+                    if($this->_isToBeUploaded($this->getFileSizeAndMdtm($fileName), $this->_getFileStat($server['project_id'], $fileName))) {
+                        $toBeUploaded[] = $fileName;
+                    }
+                } else {
+                    $toBeUploaded[] = $fileName;
+                }
+            }
+        }
+
+        return array('toBeUploaded' => $toBeUploaded, 'toBeRemoved' => $toBeRemoved);
+    }
+
+    protected function _isToBeUploaded($remoteFileStat, $repositoryFileStat) {
+        if($repositoryFileStat['size'] != $remoteFileStat['size']) {
+            return true;
+        }
+        if($repositoryFileStat['mtime'] != $remoteFileStat['mdtm']) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function _getFileStat($project_id, $fileName) {
+        $filePath = Configure::read('GitSettings.repos_path').DS.$project_id.DS.$fileName;
+
+        return stat($filePath);
+    }
 }
